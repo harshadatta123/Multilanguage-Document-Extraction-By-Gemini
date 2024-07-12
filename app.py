@@ -35,8 +35,8 @@ def input_image_setup(uploaded_file):
     if uploaded_file is not None:
         file_bytes = uploaded_file.read()
         image_parts.append({
-            'Content-Type': uploaded_file.type,
-            'Body': file_bytes
+            'mime_type': uploaded_file.type,
+            'data': file_bytes
         })
     else:
         raise FileNotFoundError("Image file is required but not provided.")
@@ -60,6 +60,6 @@ if submit:
     image_data = input_image_setup(uploaded_file)
     response = get_gemini_response(input_prompt, image_data, image)
     st.subheader("The response is")
-    st.write(response)
+    st.write(str(response))
 
 
