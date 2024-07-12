@@ -1,6 +1,29 @@
 ### Health Management App
 
 ## Function to load Google Gemini Pro Vision API and get response
+from dotenv import load_dotenv
+
+load_dotenv() ## load all the environment variables
+import streamlit as st
+
+import os
+import google.generativeai as genai
+
+from PIL import Image
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
+
+# initilize streamlit app
+st.set_page_config(page_title="GeminiDecode: Multilanguage Document Extraction by Gemini Pro")
+
+st.header("GeminiDecode: Multilanguage Document Extraction by Gemini Pro")
+
+text = "Utilizing Gemini Pro AI, this project effortlessly extracts vital information + \
+from diverse multilingual documents, transcending language barriers with \nprecision and + \
+efficiency for enhanced productivity and decision-making."
+styled_text = f"<span style='font-family:serif;'>{text}</span>"
+st.markdown(styled_text, unsafe_allow_html=True)
 
 def get_gemini_response(input, image, prompt):
     model = genai.GenerativeModel('gemini-pro-vision')
@@ -18,18 +41,6 @@ def input_image_setup(uploaded_file):
     else:
         raise FileNotFoundError("Image file is required but not provided.")
     return image_parts
-
-from dotenv import load_dotenv
-
-load_dotenv() ## load all the environment variables
-import streamlit as st
-
-import os
-import google.generativeai as genai
-
-from PIL import Image
-
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # input = st.text_input("Input Prompt: ", key = "input")
 uploaded_file = st.file_uploader("Choose an image of the document: ", type = ["jpg", "jpeg", "png"])
@@ -52,13 +63,3 @@ if submit:
     st.write(response)
 
 
-# initilize streamlit app
-st.set_page_config(page_title="GeminiDecode: Multilanguage Document Extraction by Gemini Pro")
-
-st.header("GeminiDecode: Multilanguage Document Extraction by Gemini Pro")
-
-text = "Utilizing Gemini Pro AI, this project effortlessly extracts vital information + \
-from diverse multilingual documents, transcending language barriers with \nprecision and + \
-efficiency for enhanced productivity and decision-making."
-styled_text = f"<span style='font-family:serif;'>{text}</span>"
-st.markdown(styled_text, unsafe_allow_html=True)
