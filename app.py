@@ -25,22 +25,14 @@ efficiency for enhanced productivity and decision-making."
 styled_text = f"<span style='font-family:serif;'>{text}</span>"
 st.markdown(styled_text, unsafe_allow_html=True)
 
-def get_gemini_response(input, image, prompt):
+def get_gemini_response(multimodal_prompt):
     model = genai.GenerativeModel('gemini-pro-vision')
-    response = model.generate_content([input, image[0], prompt])
+    response = model.generate_content(multimodal_prompt)
     return response.text
 
 def input_image_setup(uploaded_file):
-    image_parts = []
-    if uploaded_file is not None:
-        file_bytes = uploaded_file.read()
-        image_parts.append({
-            'mime_type': uploaded_file.type,
-            'data': file_bytes
-        })
-    else:
-        raise FileNotFoundError("Image file is required but not provided.")
-    return image_parts
+    image = Image.open(uploaded_file)
+    return image
 
 # input = st.text_input("Input Prompt: ", key = "input")
 uploaded_file = st.file_uploader("Choose an image of the document: ", type = ["jpg", "jpeg", "png"])
@@ -58,7 +50,7 @@ We will upload an image as invoice and you will have to answer any questions bas
 # if submit button is clicked
 if submit:
     image_data = input_image_setup(uploaded_file)
-    response = get_gemini_response(input_prompt, image_data, image)
+    response = get_gemini_response([image_data, input_prompt])
     st.subheader("The response is")
     st.write(str(response))
 
