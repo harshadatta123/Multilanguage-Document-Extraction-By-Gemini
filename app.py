@@ -40,18 +40,19 @@ image = ""
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption = "Uploaded Image", use_column_width = True)
-submit = st.button("Tell me about the document")
+
+
+user_input = st.text_input("Enter your prompt:")
 
 input_prompt = """
-You are an expert in understanding invoices.
-We will upload an image as invoice and you will have to answer any questions based on the uploaded invoice image.
+An image will be given and you will have to answer any questions based on the uploaded image.
 """
+# submit = st.button("Answer")
 
 # if submit button is clicked
-if submit:
-    image_data = input_image_setup(uploaded_file)
-    response = get_gemini_response([image_data, input_prompt])
-    st.subheader("The response is")
+if user_input:
+    # image_data = input_image_setup(uploaded_file)
+    response = get_gemini_response([image, input_prompt + user_input])
+    # st.subheader("The response is")
+    # st.text_area("Chatbot response:", value=response)
     st.write(str(response))
-
-
