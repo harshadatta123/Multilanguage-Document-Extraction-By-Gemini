@@ -42,7 +42,7 @@ if uploaded_file is not None:
     st.image(image, caption = "Uploaded Image", use_column_width = True)
 
 
-user_input = st.text_input("Enter your text:")
+user_input = st.text_input("Enter your prompt:")
 
 input_prompt = """
 An image will be given and you will have to answer any questions based on the uploaded image.
