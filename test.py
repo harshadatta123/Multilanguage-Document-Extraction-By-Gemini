@@ -47,12 +47,12 @@ user_input = st.text_input("Enter your text:")
 input_prompt = """
 An image will be given and you will have to answer any questions based on the uploaded image.
 """
-submit = st.button("Answer")
+# submit = st.button("Answer")
 
 # if submit button is clicked
-if user_input or submit:
-    image_data = input_image_setup(uploaded_file)
-    response = get_gemini_response([image_data, input_prompt + user_input])
+if user_input:
+    # image_data = input_image_setup(uploaded_file)
+    response = get_gemini_response([image, input_prompt + user_input])
     # st.subheader("The response is")
     # st.text_area("Chatbot response:", value=response)
     st.write(str(response))
