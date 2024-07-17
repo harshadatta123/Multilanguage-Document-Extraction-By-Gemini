@@ -24,26 +24,14 @@ Leveraging the Google Gemini Pro Vision API to create a robust, context-aware do
 
 \- Integration with Google Gemini Pro Vision API for multilingual document processing.
 
-\- Developing algorithms to accurately extract specific information from various types of documents.
-
 \- Implementing a user-friendly interface for uploading documents, viewing extracted content, and downloading the data.
-
-\- Ensuring security and privacy through robust authentication, encryption, and access controls.
-
-\- Optimizing the application for scalability and performance to handle a growing user base.
 
 Key Features
 
 \- Multilingual document processing to handle documents in various languages.
 
-\- Efficient information extraction tailored to different document types such as invoices, contracts, and research papers.
-
 \- Context-aware content extraction that focuses on relevant sections of each document type.
 
-\- User-friendly interface for easy document upload, content viewing, and data download.
-
-\- Quality assurance mechanisms to handle noisy or poorly scanned images.
-
-\- Robust security and privacy measures to protect sensitive information.
+\- User-friendly interface for easy document upload, and content viewing.
 
 \- Scalability to handle multiple requests concurrently without compromising performance.
