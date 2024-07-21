@@ -1,9 +1,6 @@
-### Health Management App
-
-## Function to load Google Gemini Pro Vision API and get response
 from dotenv import load_dotenv
 
-load_dotenv() ## load all the environment variables
+load_dotenv()
 import streamlit as st
 
 import os
@@ -14,7 +11,6 @@ from PIL import Image
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 
-# initilize streamlit app
 st.set_page_config(page_title="GeminiDecode: Multilanguage Document Extraction by Gemini Pro")
 
 st.header("GeminiDecode: Multilanguage Document Extraction by Gemini Pro")
@@ -34,7 +30,7 @@ def input_image_setup(uploaded_file):
     image = Image.open(uploaded_file)
     return image
 
-# input = st.text_input("Input Prompt: ", key = "input")
+
 uploaded_file = st.file_uploader("Choose an image of the document: ", type = ["jpg", "jpeg", "png"])
 image = ""
 if uploaded_file is not None:
@@ -48,12 +44,7 @@ input_prompt = """
 An image will be given and you will have to answer any questions based on the uploaded image. 
 While answering, provide your chain-of-thought reasoning before validating it with adequate spacing.
 """
-# submit = st.button("Answer")
 
-# if submit button is clicked
 if user_input:
-    # image_data = input_image_setup(uploaded_file)
     response = get_gemini_response([image, input_prompt + user_input])
-    # st.subheader("The response is")
-    # st.text_area("Chatbot response:", value=response)
     st.write(str(response))
