@@ -26,7 +26,7 @@ styled_text = f"<span style='font-family:serif;'>{text}</span>"
 st.markdown(styled_text, unsafe_allow_html=True)
 
 def get_gemini_response(multimodal_prompt):
-    model = genai.GenerativeModel('gemini-pro-vision')
+    model = genai.GenerativeModel('gemini-1.5-pro')
     response = model.generate_content(multimodal_prompt)
     return response.text
 
@@ -45,7 +45,8 @@ if uploaded_file is not None:
 user_input = st.text_input("Enter your prompt:")
 
 input_prompt = """
-An image will be given and you will have to answer any questions based on the uploaded image.
+An image will be given and you will have to answer any questions based on the uploaded image. 
+While answering, provide your chain-of-thought reasoning before validating it with adequate spacing.
 """
 # submit = st.button("Answer")
 
